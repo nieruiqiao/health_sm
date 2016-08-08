@@ -1,0 +1,62 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, dl, dt, dd, ul, ol, li, form, fieldset, input, label,textarea{margin:0;padding:0;}
+body{font-family:Microsoft YaHei, Arial,Helvetica,sans-serif;-webkit-text-size-adjust:none;color:#333;font-size:0.32rem;}
+html,body {height:100%;-webkit-user-select:none;user-select:none;outline:0;-webkit-tap-highlight-color:transparent;-moz-tap-highlight-color:transparent;-ms-tap-highlight-color:transparent;
+  tap-highlight-color:transparent;}
+a{text-decoration:none;outline:none;}
+input{outline:none;}
+img{border:0;outline:none;}
+em,i{font-style:normal;}
+ul,li{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+input[type="button"],input[type="submit"]{-webkit-appearance:none;}
+::-webkit-input-placeholder{color:#ccc;font-family:Microsoft YaHei;}
+.clearfix:before,.clearfix:after{content:"";display:table;height:0;font-size:0;line-height:0;visibility:hidden;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;}
+.hide{display:none;}
+
+@function px2rem($px, $base-font-size: 75px) {
+  @if (unitless($px)) {
+    @warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels for you";
+    @return px2rem($px + 0px); // That may fail.
+  } @else if (unit($px) == rem) {
+    @return $px;
+  }
+  @return ($px / $base-font-size) * 1rem;
+}
+
+/*会主动消失的提示**/
+.tipBox{font-size:0.427rem;text-align: center;border-radius:0.133rem;position: absolute;left:50%;top:50%;margin:-0.533rem 0 0 -4.0rem;background:rgba(0,0,0,0.6);color:#fff;/*-webkit-animation:boxfade 4s ease;-ms-animation:boxfade 4s ease;-o-animation:boxfade 4s ease; */z-index:10001;opacity: 0;}
+.tipBox{position: fixed;width:auto; padding:0 1.013rem; line-height:1.067rem;}
+.tipBox b{display:inline-block;width:0.587rem;height:0.587rem; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAB4CAYAAACw/KG7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUE5NzQ4ODRFQzAxMTFFM0FEOThCRTY3OUQ0QTM1MDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUE5NzQ4ODVFQzAxMTFFM0FEOThCRTY3OUQ0QTM1MDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxQTk3NDg4MkVDMDExMUUzQUQ5OEJFNjc5RDRBMzUwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxQTk3NDg4M0VDMDExMUUzQUQ5OEJFNjc5RDRBMzUwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PpcRcDIAAAh8SURBVHja7JsLTNVVHMfvvfJ+CSorS0ERDQlJi2SlM9fDpS3N5i5SrUybzJ72GODs4dzMyi3NYVL02MQ1NWrkXGmlpTOdD3RUyEhImUGiDYbIS+Devr/L7w+Hv/8L9/+49yL7n+278+fec/78Pv/fefzOOf9rdTqdlqGQbJYhkkwQE8QEMUFMEL+kAL032LRpk0WaVCkXr5Xy7OzsPp/ZbLbBASJPVqtVMnQENAGKh2KhKCgYWg1dgaqhcofDcRjlfxw2bNg5v4NIxiO3Ik/BR/ficqyzN/5xsigFQSNZ06BM+q6zs/M35B+jSlFgYKDD532EIDinp/8KGYbrOPn37hKzUqEZuN6O/NS1a9dm+8MjATB2Hoy4hw2XHNEJVUBnoRqoAWqD3oGGQwnQXdBDKD8XeQiDTUa2t729PR/XuSEhIW1eB9m8eXMYDH8W/5A84GSIZlwfxvUxMtxNdN0InSahb3yGZjUc5Zbj75XQKK6TRU2vtbV1YWhoaL3XmlZeXl44jH2eOjM1H2t3GzqNbCN0kJ++xV0TEwEDAgIa0S824LMp3LycnO7G9f6WlpZRXgHZsmULeXIZjLuJARzIiqBduG5x14/c9I+eFBQUVB8cHLyMvAN1MNBE6Ovm5uZgb3hkPoyL77bR2gXRUzwhGS2X2oR+UYgsAwDtDJuGfL2hIFu3bp0E42ZYOeGjb5CVaTXaXUK/2AvjXxaa2bKmpqZZhoDk5+eT7QshGxt+Cjqh5AVPPDLQMjs8PHw79RkGofIbGhsbbbpBYNQdyEazJ1qQFXsCoQTk6V4Byq2GLrNnJiFfYATIfdbe9OuKFSuatUCogYmMjKxHuTxnb3pOF0hBQcEImr0ZohM64q5zS6KAUISQrsXg0kOvfAG1MEh6fX19vGYQGJHMfYN0JisryzXMSsZKhkvypK94ChMdHX0FweU+wSuz9YBMEJpVhfiUxaevBCV+J3oExqnxyi8CSLrmEAVGjOZ5g25aLQcRDRQlPn3JcOlaJQiFNA6+50Q9ICM5SqXr/3pcygsjDuOvW2SJoCJIV1eXSypAqoVlwa16QEK5KTqXLFnSqhDGX9f2pRWgfCXY0dHhkhqQ2NjYprq6ui62IUwPiJU90qfXqlmqYra2XLx4UfNsjwfiEBZqmjt7u9TTCwsLw0QQUQjLXUJE6xKiWgsCQUtYWJglJibGUllZaWloaLAgorVgzeExRG1tbQSappU7e5MejzRAUeyRWF5z9/GIfBKURi8JDMGg6/u2tjYpfFfjjXihs9doBoFB1CbG85/jJBClWVw+BBMIeYZyStQ3qI+oSfDGFFq48Z9/6WlaZ6WmBeNSxKalNG9ITUyU5D0avTSMWjNRz8FN67geEClUpzRtx44dYZIX5BBKQGK4Is0jnoKcP38+AnXuZwiCOaQZJDMz8zJ5BQZRiBKE7AGlzu5OemZ2lH0CZYNcFA7Hybi4uAt6o9/9UuuC5hYVFUW46xdKMZc8zvIk1qqqqoqC8UsFb2wzIow/Dv3b7RRrNPSUkuHyQFIOoxTC9NPJc1AuptsZjkrk3+sGsdvttOVTKASPs3mNcp3hSk1KbfRbUVGxAGUeZ09QWpuQkOAwZM2+aNGiP2DYAQEmC7pzoJWi2qZVXl4+E9+vESB2JSYmHjV0FwVGbYOqGCQQyoUe1bt7IqWysrL5MPwjKIAhSqF3+7VJ6zl7cXFxFIxdC40RvHMQzelz5FfdzS/yz6ZPn95zz9LS0kh8/xo+Xyjcsxp6OikpqcErIJR2795N//hNaKIwWV5F9i20D9fNSitHOUhJSUkErmmvbCkUw0M8pTPQC8nJyQ0DthK9bz7s2bOHmhbtOj4swJAhHTTK4fIUzz81UDuDhEBjoCT8nY58Fi0ThLqUvoPeS0lJ8Siy1L0bzwbThtdRaDkfKZAhwRBtqNHIZhOWACQKumx4iC7bkdt4E5wGADrw2ZCamnrMXydWpdBLMGYm9Biuk3qXMT2RsVUaYMQVJQeDf9IeL/Kfpk6dqvqgxwiPiCIDDrFuoWEZ+RQ+fruZNg+5Gh09XIIo1PgdAMfS0tJq/Hr01s+8UUvrIepG/U2I6enphjQHrx9PG7mx7dVRa7Ak880HE8QEMUFMEBPEBDFBTJChC0IrxeWc37AgFN9/Cn0CfakbRukk1gei5UOBs2+ilwJsWu9p85Mn8iD5qxi0UTHqRvGIlXcQ5elvaKyee/sa5EMFCDo/H6f33loqraT3pjTU+0AB4gKUYMRDUlvhRWF3fJ2KeusUIP6BEo3ytprCzwgQUlrjQb01ChC10G1GNls1hSdDdQpGvd1PnbcUytfxvSz+AiHdDl1SMC5XoWyuQjmqm+KNgURLpVR6x1DByDeEMq8rfH+Z63plRNS6QUe/MvjZ0v3TCjG9yvlG2ed0vkHH2acH404jvaC/39L9wn7P/CrM3lKi9+AfhE4O1ui3BJrDhorhhxxijrchjIh+6Z0Q+snEFYXv6FWkeVzmhliP0JHxI5buMw8pNfNnR3wWiRq4G0/R6w98TZ446NOQ2uBjhfs5P+DztYF5PmKCmCAmiAligpggJogJYoKYICaICWKCmCBDBiQHsmuoR3WyvUaicrNY2mHvhOwq6tm5jrude5/uxufIdtc9hREhpJRjNIiapkW/OxR/pkYH/F8N0MzsXEZ8GaCL7+XXprVY4em684zdTdnFg+WgxxMYn0LoOWfvD8bnEHpfGHAH43MII958UILxOYRRr3BkuIHxGYRRbwc5NX7n1+HXkyFW7pWMwd607Co6e8ZgBcnox+AMf8AYDaGmjF9B1BjoUxhvQfgcRs3wO14hin0S2tlPnZ1cRh41j/f38LtK41MVPbPKG01L7Q8q1/Mkd24ATyh5htI46H1vzIf/CzAAW7huzZl8a7oAAAAASUVORK5CYII=");background-size:0.667rem 1.6rem; position:absolute;left:0.293rem;top:0.133rem;}
+.tipBox.loading{-webkit-animation:initial;}
+.tipBox.loading,.alertBox.ok,.alertBox.error{padding-right:0.427rem;}
+.tipBox.loading b{top:0.16rem; background-position:-0.08rem -0.08rem;-webkit-animation:loading 1.5s linear infinite;-ms-animation:loading 1.5s linear infinite;animation:loading 1.5s linear infinite; }
+.tipBox.ok b{ background-position:0 0.96rem;}
+.tipBox.error b{ background-position:0 2.053rem;display:none;}
+/*带loading图tip**/
+@-webkit-keyframes loading{0%{-webkit-transform: rotate(0deg);} 100%{-webkit-transform: rotate(-720deg);}}
+.tipBox .box_loading{ -webkit-animation:loading 2s linear infinite;-ms-animation:loading 2s linear infinite;-o-animation:loading 2s linear infinite; display:inline-block;width:0.64rem;height:0.64rem;border-radius:0.32rem;
+  background:-webkit-gradient(linear, 0 0, 0 60%, from(#fff), to(#1d1d1d)); position:absolute;top:0.187rem;left:0.48rem;}
+.tipBox .box_loading .loading_mask{ display:inline-block;width:0.533rem;height:0.533rem;border-radius:0.267rem;background:#1d1d1d;position:absolute;top:0.053rem;left:0.053rem;}
+.masktip{background:#000;opacity:0.4;width:100%;height:100%;position:fixed;z-index:99;left:0;top:0; display: none;}
+.masktip1{z-index:10000;}
+/**tip提示框样式相**/
+
+/**loading框样式相关**/
+@-webkit-keyframes loading { from { -webkit-transform:rotate(0deg);} to { -webkit-transform:rotate(-360deg);}}
+/**loading框样式相关**/
+/*alerBox confirmBox*/
+.popBox{position: fixed; z-index: 10000; top: 50%; left: 11%; margin-top: -2.053rem; height:4.133rem;display: none;  width: 78%;background: #fff;color: #333333;border-radius:0.267rem;font-size: 0.373rem;}
+/*.popBox h4 {padding: 1rem 0;font-size: 1.125rem;text-align: center;}/!*标题*!/
+.popBox .alertcontent{padding-top: .3rem;text-align: center;}/!*内容*!/
+.popBox .tureBtn{display: block;line-height: 2.5rem;font-size: 1.05rem;margin-top: 2rem;text-align: center;border-top: 1px solid #000000;color: #ffc107;}/!*按钮*!/*/
+.popBox .confirmcontent{overflow: hidden;zoom: 1;word-wrap: break-word;padding: 1.28rem 0.533rem 0 0.533rem;max-height: 1.6rem;text-align: center;}
+.popBox .confirmbutton{font-size:0.427rem;text-align: center;display: -webkit-box;position: absolute;width: 100%;bottom: 0;height: 1.067rem;line-height: 1.067rem;border-top:1px solid #d9d9d9;}
+.popBox .confirmbutton div{-webkit-box-flex: 1;width: 0;color: #8c8c8c;font-size:0.373rem;border-radius:0 0 0 0.267rem;}
+.popBox .confirmbutton div.tapped{background:#171d25;}
+.popBox .confirmbutton div:nth-child(2){color:#ff5000;border-left:1px solid #d9d9d9;border-radius:0 0 0.267rem 0;}
+.popBox .confirmbutton div:nth-child(2).tapped{background: #ff8f00;}
+/*alerBox confirmBox*/
+.mask{position:fixed;width:100%;z-index:101;left:0;top:0;background:rgba(0,0,0,.5);height:100%;border-radius:0px;}
+
